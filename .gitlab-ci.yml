@@ -1,0 +1,30 @@
+stages:
+  - deploy
+
+cache:
+  paths:
+    - vendor/
+
+deploy:etown:
+  stage: deploy
+  only:
+    - master
+  tags:
+    - shell
+    - etown
+    - tcbsms
+  before_script:
+    - composer --version
+    - mysql --version
+  script:
+    - chmod -R 777 .
+    - /bin/cp -f ./.gitlab/ci/deploy_etown/.env ./.env
+    - set COMPOSER_ALLOW_SUPERUSER=1
+    - composer install
+    - php artisan key:generate
+    - php artisan storage:link
+    - php artisan migrate:fresh
+    - php artisan db:seed
+  cache:
+    paths:
+      - vendor/
