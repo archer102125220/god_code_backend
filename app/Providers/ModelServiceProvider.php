@@ -29,6 +29,9 @@ class ModelServiceProvider extends ServiceProvider
         Route::bind('user_onlytrashed', function ($id) {
             return \App\Model\Eloquent\User::with(['roles'])->onlyTrashed()->findOrFail($id);
         });
+        Route::bind('event_type_onlytrashed', function ($id) {
+            return \App\Model\Eloquent\EventType::onlyTrashed()->findOrFail($id);
+        });
     }
 
     public function bootModelObserver()

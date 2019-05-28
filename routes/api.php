@@ -52,4 +52,10 @@ Route::group(['namespace' => 'Api'], function () {
         Route::resource('log', 'LogController', ['only' => ['index', 'show']]);
     });
 
+    Route::group(['namespace' => 'EventType', 'middleware' => 'jwt.auth'], function () {
+        Route::resource('event_type', 'EventTypeController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+        Route::delete('event_type/{event_type}/delete', 'EventTypeController@delete')->name('event_type.delete');
+        Route::patch('event_type/{event_type_onlytrashed}/restore', 'EventTypeController@restore')->name('event_type.restore');
+    });
+
 });
