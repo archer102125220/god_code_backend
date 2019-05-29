@@ -21,10 +21,12 @@ class UserTableSeeder extends Seeder
         ];
 
         $admin = User::create([
-            'username' => 'admin',
+            'account' => 'admin',
             'password' => 'admin',
+            'number' => '131',
             'name' => '系統管理者',
             'email' => 'admin@mail.com',
+            'introduction' => '123'
         ]);
         $admin->assignRole($role['admin']->id);
         $admin->save();
