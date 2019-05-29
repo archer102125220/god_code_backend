@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id')->comment('成員ID');
             //uniqid 索引唯一值
-            $table->string('account')->uniqid()->comment('帳號');
+            $table->string('username')->uniqid()->comment('帳號');
             $table->string('password')->comment('密碼');
             $table->string('number', 20)->comment('學號、教師證');
             $table->string('email')->comment('電子信箱');
@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('created_by')->nullable();
             $table->timestamps();
             $table->unsignedInteger('updated_by')->nullable();
-
+            $table->softDeletes();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
         });

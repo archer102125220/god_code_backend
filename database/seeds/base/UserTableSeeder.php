@@ -21,7 +21,7 @@ class UserTableSeeder extends Seeder
         ];
 
         $admin = User::create([
-            'account' => 'admin',
+            'username' => 'admin',
             'password' => 'admin',
             'number' => '131',
             'name' => '系統管理者',
