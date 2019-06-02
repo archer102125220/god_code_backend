@@ -63,4 +63,8 @@ Route::group(['namespace' => 'Api'], function () {
         Route::delete('school_system/{school_system}/delete','SchoolSystemController@delete')->name('school_system.delete'); //執行軟刪除
         Route::patch('school_system/{school_system_onlytrashed}/restore','SchoolSystemController@restore')->name('school_system.restore'); //取消軟刪除
     });
+
+    Route::group(['namespace'=>'Identity','middleware'=>'jwt.auth'],function(){
+
+    });
 });
