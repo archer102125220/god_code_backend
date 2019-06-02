@@ -59,12 +59,14 @@ Route::group(['namespace' => 'Api'], function () {
     });
 
     Route::group(['namespace' => 'SchoolSystem', 'middleware' => 'jwt.auth'], function () {
-        Route::resource('school_system','SchoolSystemController',['only' =>['index','show','store','update','destroy']]);
-        Route::delete('school_system/{school_system}/delete','SchoolSystemController@delete')->name('school_system.delete'); //執行軟刪除
-        Route::patch('school_system/{school_system_onlytrashed}/restore','SchoolSystemController@restore')->name('school_system.restore'); //取消軟刪除
+        Route::resource('school_system', 'SchoolSystemController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+        Route::delete('school_system/{school_system}/delete', 'SchoolSystemController@delete')->name('school_system.delete'); //執行軟刪除
+        Route::patch('school_system/{school_system_onlytrashed}/restore', 'SchoolSystemController@restore')->name('school_system.restore'); //取消軟刪除
     });
 
-    Route::group(['namespace'=>'Identity','middleware'=>'jwt.auth'],function(){
-
+    Route::group(['namespace' => 'Identity', 'middleware' => 'jwt.auth'], function () {
+        Route::resource('identity', 'IdentityController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]); //綁定CRUD
+        Route::delete('identity/{identity}/delete', 'IdentityController@delete')->name('identity.delete'); //執行軟刪除
+        Route::patch('identity/{identity_onlytrashed}/restore', 'IdentityController@restore')->name('identity.restore'); //取消軟刪除
     });
 });

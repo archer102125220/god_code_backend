@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIdentitysTable extends Migration
+class CreateIdentitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateIdentitysTable extends Migration
      */
     public function up()
     {
-        Schema::create('identitys', function (Blueprint $table) {
+        Schema::create('identities', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->comment('身分ID');
-            $table->string('identitys', 10)->comment('身分名稱');
+            $table->string('identities', 10)->comment('身分名稱');
             //新增人
             $table->unsignedInteger('created_by')->nullable();
             //新增及更新的時間戳
@@ -38,6 +38,6 @@ class CreateIdentitysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('identitys');
+        Schema::dropIfExists('identities');
     }
 }

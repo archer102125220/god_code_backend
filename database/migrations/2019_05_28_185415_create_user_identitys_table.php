@@ -31,7 +31,7 @@ class CreateUserIdentitysTable extends Migration
 
             //關聯
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
-            $table->foreign('identity_id')->references('id')->on('identitys')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('identity_id')->references('id')->on('identities')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
         });
