@@ -58,4 +58,9 @@ Route::group(['namespace' => 'Api'], function () {
         Route::patch('event_type/{event_type_onlytrashed}/restore', 'EventTypeController@restore')->name('event_type.restore');
     });
 
+    Route::group(['namespace' => 'SchoolSystem', 'middleware' => 'jwt.auth'], function () {
+        Route::resource('school_system','SchoolSystemController',['only' =>['index','show','store','update','destroy']]);
+        Route::delete('school_system/{school_system}/delete','SchoolSystemController@delete')->name('school_system.delete'); //執行軟刪除
+        Route::patch('school_system/{school_system_onlytrashed}/restore','SchoolSystemController@restore')->name('school_system.restore'); //取消軟刪除
+    });
 });
