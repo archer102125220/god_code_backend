@@ -16,9 +16,11 @@ class PermissionTableSeeder extends Seeder
     {
         $this->createPermissionGroup('user');
         $this->createPermissionGroup('role', ['disable']);
+        $this->createPermissionGroup('expertise');
+        $this->createPermissionGroup('eventtype');
         $this->createPermissionGroup('config', ['disable','create','delete']);
         $this->createPermissionGroup('log', ['disable','create','edit','delete']);
-        $this->createPermissionGroup('eventtype');
+        
     }
 
     public function createPermissionGroup($preslug = "", $withOut = [])

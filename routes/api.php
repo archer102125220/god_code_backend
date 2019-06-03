@@ -86,4 +86,9 @@ Route::group(['namespace' => 'Api'], function () {
         Route::delete('publisher/{publisher}/delete', 'PublisherController@delete')->name('publisher.delete');
         Route::patch('publisher/{publisher_onlytrashed}/restore', 'PublisherController@restore')->name('publisher.restore');
     });
+    Route::group(['namespace' => 'Expertise', 'middleware' => 'jwt.auth'], function () {
+        Route::resource('expertise', 'ExpertiseController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+        Route::delete('expertise/{expertise}/delete', 'ExpertiseController@delete')->name('expertise.delete');
+        Route::patch('expertise/{expertise_onlytrashed}/restore', 'ExpertiseController@restore')->name('expertise.restore');
+    });
 });

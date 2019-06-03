@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Api\Interest;
+namespace App\Http\Controllers\Api\Expertise;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\FileUploader;
-use App\Http\Requests\Api\Interest\CreateInterestRequest;
-use App\Http\Requests\Api\Interest\UpdateInterestRequest;
+use App\Http\Requests\Api\Expertise\CreateExpertiseRequest;
+use App\Http\Requests\Api\Expertise\UpdateExpertiseRequest;
 use App\Model\Eloquent\Log;
-use App\Model\Eloquent\Interest;
+use App\Model\Eloquent\Expertise;
 use Illuminate\Http\Request;
 use Response;
 
-class InterestController extends Controller
+class ExpertiseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,96 +21,96 @@ class InterestController extends Controller
     public function index(Request $request)
     {
         //顯示全部
-        $interest = Interest::withTrashed()->fromRequest($request);
-        $paginator = $interest->paginate(10)->appends($request->all());
+        $expertise = Expertise::withTrashed()->fromRequest($request);
+        $paginator = $expertise->paginate(10)->appends($request->input());
         return Response::json($paginator, 200);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Api\Interest\CreateInterestRequest $request  驗證的資料格式
+     * @param  \App\Http\Requests\Api\Interest\CreateExpertiseRequest $request  驗證的資料格式
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateInterestRequest $request)
+    public function store(CreateExpertiseRequest $request)
     {
         //新增資料
-        Log::record('Interest', 'create', json_encode(['data' => $request->all()]));
-        $interest = Interest::create($request->all());
-        $interest->save();
-        return Response::json($interest, 200);
+        Log::record('Expertise', 'create', json_encode(['data' => $request->all()]));
+        $expertise = Expertise::create($request->all());
+        $expertise->save();
+        return Response::json($expertise, 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Eloquent\Interest  $interest 呼叫interest的Model
+     * @param  \App\Model\Eloquent\Expertise  $expertise 呼叫expertise的Model
      * @return \Illuminate\Http\Response
      */
-    public function show(Interest $interest)
+    public function show(Expertise $expertise)
     {
         // 單筆顯示
-        return Response::json($interest, 200);
+        return Response::json($expertise, 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Api\Interest\UpdateInterestRequest  $request
-     * @param  \App\Model\Eloquent\Interest  $interest 
+     * @param  \App\Http\Requests\Api\Interest\UpdateExpertiseRequest  $request
+     * @param  \App\Model\Eloquent\Expertise  $interest 
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateInterestRequest $request, Interest $interest)
+    public function update(UpdateExpertiseRequest $request, Expertise $expertise)
     {
         //修改資料
-        Log::record('Interest', 'update', json_encode(['data' => $request->all()]));
-        $interest->fill($request->all());
-        if ($interest->isDirty())
-            $interest->save();
+        Log::record('Expertise', 'update', json_encode(['data' => $request->all()]));
+        $expertise = fill($request->all());
+        if ($expertise->isDirty())
+            $expertise->save();
         else
-            $interest->touch();
-        return Response::json($interest, 200);
+            $expertise->touch();
+        return Response::json($expertise, 200);
     }
 
     /**
      * Soft Delete the specified resource in storage.
      *
-     * @param  \App\Model\Eloquent\Interest  $interest
+     * @param  \App\Model\Eloquent\Expertise  $expertise
      * @return \Illuminate\Http\Response
      */
-    public function delete(Interest $interest)
+    public function delete(Expertise $expertise)
     {
         //對資料執行軟刪除
-        Log::record('Interest', 'delete', json_encode(['data' => $interest->toArray()]));
-        $interest->delete();
-        return Response::json($interest, 200);
+        Log::record('Expertise', 'delete', json_encode(['data' => $expertise->toArray()]));
+        $expertise->delete();
+        return Response::json($expertise, 200);
     }
 
     /**
      * Restore soft delete the specified resource from storage.
      *
-     * @param  \App\Model\Eloquent\Interest  $interest
+     * @param  \App\Model\Eloquent\Expertise  $expertise
      * @return \Illuminate\Http\Response
      */
-    public function restore(Interest $interest)
+    public function restore(Expertise $expertise)
     {
         //將軟刪除的資料恢復
-        Log::record('Interest', 'restore', json_encode(['data' => $interest->toArray()]));
-        $interest->restore();
-        return Response::json($interest, 200);
+        Log::record('Expertise', 'restore', json_encode(['data' => $expertise->toArray()]));
+        $expertise->restore();
+        return Response::json($expertise, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\Eloquent\Interest  $interest
+     * @param  \App\Model\Eloquent\Expertise  $expertise
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Interest $interest)
+    public function destroy(Expertise $expertise)
     {
         //刪除資料
-        Log::record('Interest', 'destroy', json_encode(['data' => $interest->toArray()]));
-        $interest->forceDelete();
+        Log::record('Expertise', 'destroy', json_encode(['data' => $expertise->toArray()]));
+        $expertise->forceDelete();
         return Response::json(null, 200);
     }
 }
