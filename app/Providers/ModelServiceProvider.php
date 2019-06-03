@@ -32,6 +32,15 @@ class ModelServiceProvider extends ServiceProvider
         Route::bind('event_type_onlytrashed', function ($id) {
             return \App\Model\Eloquent\EventType::onlyTrashed()->findOrFail($id);
         });
+        Route::bind('shool_system_onlytrashed', function ($id) {
+            return \App\Model\Eloquent\EventType::onlyTrashed()->findOrFail($id);
+        });
+        Route::bind('identity_onlytrashed', function ($id) {
+            return \App\Model\Eloquent\Identity::onlyTrashed()->findOrFail($id);
+        });
+        Route::bind('interest_onlytrashed', function ($id) {
+            return \App\Model\Eloquent\Interest::onlyTrashed()->findOrFail($id);
+        });
     }
 
     public function bootModelObserver()
