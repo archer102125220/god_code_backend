@@ -44,6 +44,9 @@ class ModelServiceProvider extends ServiceProvider
         Route::bind('organizer_onlytrashed', function ($id) {
             return \App\Model\Eloquent\Organizer::onlyTrashed()->findOrFail($id);
         });
+        Route::bind('publisher_onlytrashed', function ($id) {
+            return \App\Model\Eloquent\Publisher::onlyTrashed()->findOrFail($id);
+        });
     }
 
     public function bootModelObserver()
