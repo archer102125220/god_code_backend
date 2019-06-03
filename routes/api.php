@@ -91,4 +91,9 @@ Route::group(['namespace' => 'Api'], function () {
         Route::delete('expertise/{expertise}/delete', 'ExpertiseController@delete')->name('expertise.delete');
         Route::patch('expertise/{expertise_onlytrashed}/restore', 'ExpertiseController@restore')->name('expertise.restore');
     });
+    Route::group(['namespace' => 'ResearchType', 'middleware' => 'jwt.auth'], function () {
+        Route::resource('research_type', 'ResearchTypeController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+        Route::delete('research_type/{research_type}/delete', 'ResearchTypeController@delete')->name('research_type.delete');
+        Route::patch('research_type/{research_type_onlytrashed}/restore', 'ResearchTypeController@restore')->name('research_type.restore');
+    });
 });

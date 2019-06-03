@@ -19,6 +19,7 @@ class PermissionTableSeeder extends Seeder
         $this->createPermissionGroup('schoolsystem');
         $this->createPermissionGroup('interest');
         $this->createPermissionGroup('expertise');
+        $this->createPermissionGroup('researchtype');
         $this->createPermissionGroup('organizer');
         $this->createPermissionGroup('publisher');
         $this->createPermissionGroup('expertise');
