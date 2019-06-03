@@ -75,6 +75,7 @@ Route::group(['namespace' => 'Api'], function () {
         Route::resource('interest', 'InterestController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
         Route::delete('interest/{interest}/delete', 'InterestController@delete')->name('interest.delete');
         Route::patch('interest/{interest_onlytrashed}/restore', 'InterestController@restore')->name('interest.restore');
+    });
     Route::group(['namespace' => 'Organizer', 'middleware' => 'jwt.auth'], function () {
         Route::resource('organizer', 'OrganizerController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
         Route::delete('organizer/{organizer}/delete', 'OrganizerController@delete')->name('organizer.delete');
