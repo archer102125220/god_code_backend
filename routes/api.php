@@ -69,4 +69,10 @@ Route::group(['namespace' => 'Api'], function () {
         Route::delete('identity/{identity}/delete', 'IdentityController@delete')->name('identity.delete'); //執行軟刪除
         Route::patch('identity/{identity_onlytrashed}/restore', 'IdentityController@restore')->name('identity.restore'); //取消軟刪除
     });
+
+    Route::group(['namespace' => 'Interest', 'middleware' => 'jwt.auth'], function () {
+        Route::resource('interest', 'InterestController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+        Route::delete('interest/{interest}/delete', 'InterestController@delete')->name('interest.delete');
+        Route::patch('interest/{interest_onlytrashed}/restore', 'InterestController@restore')->name('interest.restore');
+    });
 });
