@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
  */
 
+//Route傳址給中介層去判斷身分驗證
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -57,5 +58,14 @@ Route::group(['namespace' => 'Api'], function () {
         Route::delete('event_type/{event_type}/delete', 'EventTypeController@delete')->name('event_type.delete');
         Route::patch('event_type/{event_type_onlytrashed}/restore', 'EventTypeController@restore')->name('event_type.restore');
     });
-
+    Route::group(['namespace' => 'Organizer', 'middleware' => 'jwt.auth'], function () {
+        Route::resource('organizer', 'OrganizerController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+        Route::delete('organizer/{organizer}/delete', 'OrganizerController@delete')->name('organizer.delete');
+        Route::patch('organizer/{organizer_onlytrashed}/restore', 'OrganizerController@restore')->name('organizer.restore');
+    });
+    Route::group(['namespace' => 'Publisher', 'middleware' => 'jwt.auth'], function () {
+        Route::resource('publisher', 'PublisherController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+        Route::delete('publisher/{publisher}/delete', 'PublisherController@delete')->name('publisher.delete');
+        Route::patch('publisher/{publisher_onlytrashed}/restore', 'PublisherController@restore')->name('publisher.restore');
+    });
 });
