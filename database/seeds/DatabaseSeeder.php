@@ -1,6 +1,7 @@
 <?php
 
 use Database\Seeder\Base\ConfigTableSeeder;
+use Database\Seeder\Base\IdentityTableSeeder;
 use Database\Seeder\Base\PermissionTableSeeder;
 use Database\Seeder\Base\RoleTableSeeder;
 use Database\Seeder\Base\SchoolSystemTableSeeder;
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(PermissionTableSeeder::class);
         $this->call(RoleTableSeeder::class);
+        $this->call(IdentityTableSeeder::class);
         $this->call(SchoolSystemTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(ConfigTableSeeder::class);
