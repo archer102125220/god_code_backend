@@ -22,7 +22,7 @@ class IdentityTableSeeder extends Seeder
 
     public function createIdentityGroup($identity)
     {
-        Identity: create([
+        Identity::create([
             'identities' => $identity
         ]);
     }
