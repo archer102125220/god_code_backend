@@ -2,6 +2,7 @@
 
 use Database\Seeder\Base\ConfigTableSeeder;
 use Database\Seeder\Base\EventTableSeeder;
+use Database\Seeder\Base\ExpertiseTableSeeder;
 use Database\Seeder\Base\IdentityTableSeeder;
 use Database\Seeder\Base\InterestTableSeeder;
 use Database\Seeder\Base\OrganizerTableSeeder;
@@ -32,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EventTableSeeder::class);
         $this->call(ResearchTypeTableSeeder::class);
         $this->call(InterestTableSeeder::class);
+        $this->call(ExpertiseTableSeeder::class);
         $this->call(ConfigTableSeeder::class);
 
         if (config('app.env') === 'local') { }
