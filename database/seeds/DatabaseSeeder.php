@@ -1,6 +1,7 @@
 <?php
 
 use Database\Seeder\Base\ConfigTableSeeder;
+use Database\Seeder\Base\EventTableSeeder;
 use Database\Seeder\Base\IdentityTableSeeder;
 use Database\Seeder\Base\OrganizerTableSeeder;
 use Database\Seeder\Base\PermissionTableSeeder;
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
         $this->call(OrganizerTableSeeder::class);
         $this->call(PublisherTableSeeder::class);
+        $this->call(EventTableSeeder::class);
         $this->call(ConfigTableSeeder::class);
 
         if (config('app.env') === 'local') { }
