@@ -34,7 +34,7 @@ class EventTypeController extends Controller
     public function store(CreateEventTypeRequest $request)
     {
         Log::record('EventType', 'create', json_encode(['data' => $request->all()]));
-        $eventType = eventType::create($request->all());
+        $eventType = EventType::create($request->all());
         $eventType->save();
         return Response::json($eventType, 200);
     }
@@ -59,7 +59,7 @@ class EventTypeController extends Controller
      */
     public function update(UpdateEventTypeRequest $request, EventType $eventType)
     {
-        Log::record('eventType', 'update', json_encode(['data' => $request->all()]));
+        Log::record('EventType', 'update', json_encode(['data' => $request->all()]));
         $eventType->fill($request->all());
         if ($eventType->isDirty()) {
             $eventType->save();

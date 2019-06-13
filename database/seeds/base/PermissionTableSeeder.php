@@ -22,7 +22,7 @@ class PermissionTableSeeder extends Seeder
         $this->createPermissionGroup('researchtype');
         $this->createPermissionGroup('organizer');
         $this->createPermissionGroup('publisher');
-        $this->createPermissionGroup('eventtype');
+        $this->createPermissionGroup('eventType');
         $this->createPermissionGroup('config', ['disable','create','delete']);
         $this->createPermissionGroup('log', ['disable','create','edit','delete']);
         
