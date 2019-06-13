@@ -53,6 +53,9 @@ class ModelServiceProvider extends ServiceProvider
         Route::bind('research_type_onlytrashed', function ($id) {
             return \App\Model\Eloquent\ResearchType::onlyTrashed()->findOrFail($id);
         });
+        Route::bind('event_album_onlytrashed', function ($id) {
+            return \App\Model\Eloquent\EventAlbum::onlyTrashed()->findOrFail($id);
+        });
     }
 
     public function bootModelObserver()

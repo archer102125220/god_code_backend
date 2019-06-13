@@ -96,4 +96,10 @@ Route::group(['namespace' => 'Api'], function () {
         Route::delete('research_type/{research_type}/delete', 'ResearchTypeController@delete')->name('research_type.delete');
         Route::patch('research_type/{research_type_onlytrashed}/restore', 'ResearchTypeController@restore')->name('research_type.restore');
     });
+    Route::group(['namespace' => 'EventAlbum', 'middleware' => 'jwt.auth'], function () {
+        Route::resource('event_album', 'EventAlbumController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+        Route::delete('event_album/{event_album}/delete', 'EventAlbumController@delete')->name('event_album.delete');
+        Route::patch('event_album/{event_album_onlytrashed}/restore', 'EventAlbumController@restore')->name('event_album.restore');
+        Route::post('event_album/upload', 'EventAlbumController@upload')->name('event_album.upload');
+    });
 });

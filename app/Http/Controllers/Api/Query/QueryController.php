@@ -14,6 +14,7 @@ class QueryController extends Controller
     protected $invokeMap = [
         'user/checkConflict' => 'userCheckConflict',
         'role' => 'role',
+        'event_type' => 'event_type',
     ];
 
     protected function getQueryBuilder($builder, ?Request $_request = null, ?array $allowExtendQuery = [])
@@ -60,4 +61,13 @@ class QueryController extends Controller
         return Response::json($roles, 200);
     }
 
+    public function event_type(Request $request)
+    {
+        $allowFields = ['id', 'event_types'];
+        $allowFilters = [
+            Filter::exact('id'),
+        ];
+        $eventTypes = $this->getQueryBuilder(\App\Model\Eloquent\EventType::select($allowFields))->allowedFields($allowFields)->allowedFilters($allowFilters)->get();
+        return Response::json($eventTypes, 200);
+    }
 }
