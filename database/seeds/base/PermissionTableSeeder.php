@@ -16,10 +16,10 @@ class PermissionTableSeeder extends Seeder
     {
         $this->createPermissionGroup('user');
         $this->createPermissionGroup('role', ['disable']);
-        $this->createPermissionGroup('schoolsystem');
+        $this->createPermissionGroup('schoolSystem');
         $this->createPermissionGroup('interest');
         $this->createPermissionGroup('expertise');
-        $this->createPermissionGroup('researchtype');
+        $this->createPermissionGroup('researChtype');
         $this->createPermissionGroup('organizer');
         $this->createPermissionGroup('publisher');
         $this->createPermissionGroup('eventType');
